@@ -1,5 +1,5 @@
 import cv2
-import numpy
+import numpy as np
 import time
 
 class CaptureManager(object):
@@ -56,5 +56,50 @@ class CaptureManager(object):
         return self._videoFilename is not None
     
     
-    
+    def enterFrame(self):
+        """ Capture the next frame, if any """
+
+        # check that the previous frame was exited
+        assert not self._enteredFrame, 'previous enterFrame() had no matching exitFrame()'
+
+        if self._capture is not None:
+            self._enteredFrame = self._capture.grab()
+
+
+    def exitFrame(self):
+        """ Draw to the window. Write to files. Release the frame. """
+
+        # check whether any grabbed frame is retrievable
+        # the getter may retrieve and cache the frame
+        if self.frame is None:
+            self._enteredFrame = False
+            return
+
+        # update the FPS estimate and related variables
+        if self._framesElapsed == 0:
+            self._startTime = time.time()
+        else:
+            timeElapsed = time.time() - self._startTime
+            self._fpsEstimate = self._framesElapsed / timeElapsed
+        self._framesElapsed += 1
+
+        # draw to the window, if any
+        if self.previewWindowManager is not None:
+            if self.shouldMirrorPreview:
+                mirroredFrame = np.fliplr(self._frame).copy()
+                self.previewWindowManager.show(mirroredFrame)
+            else:
+                self.previewWindowManager.show(self._frame)
+
+        # write to the iamge file, if any
+        if self.isWrititnImage:
+            cv2.imwrite(self._imageFilename, self._frame)
+            self._imageFilename = None
+
+        # write to the video file, if any
+        self._writeVideoFrame()
+
+        # run the frame
+        self._frame = None
+        self._enteredFrame = False
     
