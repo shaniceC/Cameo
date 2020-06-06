@@ -175,7 +175,7 @@ class WindowManager(object):
 
 
     def processEvents(self):
-        """ Process an event. """
+        """ Process a keyboard event. """
         keycode = cv2.waitKey(1)
         if self.keypressCallback is not None and keycode != -1:
             # discard any non-ASCII info encoded by GTK
