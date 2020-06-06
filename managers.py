@@ -41,7 +41,7 @@ class CaptureManager(object):
     @property
     def frame(self):
         if self._enteredFrame and self._frame is None:
-            _, self._frame = self._capture.retrieve(channel = self.channel)
+            _, self._frame = self._capture.retrieve()
 
         return self._frame
 
@@ -92,7 +92,7 @@ class CaptureManager(object):
                 self.previewWindowManager.show(self._frame)
 
         # write to the iamge file, if any
-        if self.isWrititnImage:
+        if self.isWritingImage:
             cv2.imwrite(self._imageFilename, self._frame)
             self._imageFilename = None
 
@@ -139,7 +139,7 @@ class CaptureManager(object):
 
             size = (int(self._capture.get(cv2.CAP_PROP_FRAME_WIDTH)), int(self._capture.get(cv2.CAP_PROP_FRAME_HEIGHT)))
             self._videoWriter = cv2.VideoWriter(self._videoFilename, self._videoEncoding, fps, size)
-            self._vidwoWriter.write(self._frame)
+            self._videoWriter.write(self._frame)
     
 
 class WindowManager(object):
