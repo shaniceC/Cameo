@@ -123,6 +123,7 @@ class CaptureManager(object):
 
 
     def _writeVideoFrame(self):
+        """ Create or append frames to a video file. """
         if not self.isWritingVideo:
             return
 
@@ -139,4 +140,16 @@ class CaptureManager(object):
             size = (int(self._capture.get(cv2.CAP_PROP_FRAME_WIDTH)), int(self._capture.get(cv2.CAP_PROP_FRAME_HEIGHT)))
             self._videoWriter = cv2.VideoWriter(self._videoFilename, self._videoEncoding, fps, size)
             self._vidwoWriter.write(self._frame)
+    
+
+class WindowManager(object):
+    """
+    A class used to create or distroy a window, show an image and process events
+    """
+
+    def __init__(self, windowName, keypressCallback = None):
+        self.keypressCallback = keypressCallback
+        self._windowName = windowName
+        self._isWindowCreated = False
+
     
