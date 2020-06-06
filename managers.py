@@ -152,4 +152,33 @@ class WindowManager(object):
         self._windowName = windowName
         self._isWindowCreated = False
 
+    @property
+    def isWindowCreated(self):
+        return self._isWindowCreated
+
+
+    def createWindow(self):
+        """ Create a window. """
+        cv2.namedWindow(self._windowName)
+        self._isWindowCreated = True
+
+
+    def show(self, frame):
+        """ Show a frame. """
+        cv2.imshow(self._windowName, frame)
+
+
+    def destroyWindow(self):
+        """ Destroy a window. """
+        cv2.destroyWindow(self._windowName)
+        self._isWindowCreated = False
+
+
+    def processEvents(self):
+        """ Process an event. """
+        keycode = cv2.waitKey(1)
+        if self.keypressCallback is not None and keycode != -1:
+            # discard any non-ASCII info encoded by GTK
+            keycode &= 0xFF
+            self.keypressCallback(keycode)
     
