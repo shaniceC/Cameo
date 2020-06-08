@@ -16,3 +16,21 @@ def recolorRC(src, dst):
     b, g, r = cv2.split(src)
     cv2.addWeighted(b, 0.5, g, 0.5, 0, b)
     cv2.merge((b, b, r), dst)
+
+
+def recolorRGV(src, dst):
+    """ Simulate conversion from BGR to RGV (red, green, value).
+
+        The source and destination images must both be in BGR format.
+        Blues are desaturated.
+
+        Pseudocode:
+        dst.b = min(src.b, src.g, src.r)
+        dst.g = src.g
+        dst.r = src.r
+        """
+
+        b, g, r = cv2.split(src)
+        cv2.min(b, g, b)
+        cv2.min(b, r, b)
+        cv2.merge((b, g, r), dst)
