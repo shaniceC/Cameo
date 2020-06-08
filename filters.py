@@ -28,9 +28,32 @@ def recolorRGV(src, dst):
         dst.b = min(src.b, src.g, src.r)
         dst.g = src.g
         dst.r = src.r
-        """
+    """
 
         b, g, r = cv2.split(src)
         cv2.min(b, g, b)
         cv2.min(b, r, b)
         cv2.merge((b, g, r), dst)
+
+
+def recolorCMV(src, dst):
+    """ Simulate conversion from BGR to CMV (cyan, magenta, value).
+
+        The source and destination images must both be in BGR format.
+        Yellows are desaturated.
+
+        Pseudocode:
+        dst.b = max(src.b, src.g, src.r)
+        dst.g = src.g
+        dst.r = src.r
+    """
+
+    b, g, r = cv2.split(src)
+    cv2.max(b, g, b)
+    cv2.max(b, r, b)
+    cv2.merge((b, g, r), dst)
+
+
+
+
+
