@@ -30,10 +30,10 @@ def recolorRGV(src, dst):
         dst.r = src.r
     """
 
-        b, g, r = cv2.split(src)
-        cv2.min(b, g, b)
-        cv2.min(b, r, b)
-        cv2.merge((b, g, r), dst)
+    b, g, r = cv2.split(src)
+    cv2.min(b, g, b)
+    cv2.min(b, r, b)
+    cv2.merge((b, g, r), dst)
 
 
 def recolorCMV(src, dst):
@@ -166,7 +166,7 @@ def strokeEdges(src, dst, blurKsize=7, edgeKsize=5):
     else:
         graySrc = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
 
-    cv2.Laplacian(graySrc, cv2.cv.CV_8U, graySrc, ksize=edgeKsize)
+    cv2.Laplacian(graySrc, cv2.CV_8U, graySrc, ksize=edgeKsize)
     normalizedInverseAlpha = (1.0/255) * (255 - graySrc)
     
     channels = cv2.split(src)
