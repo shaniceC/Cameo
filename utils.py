@@ -20,7 +20,7 @@ def createCurveFunc(points):
     else:
         kind = 'cubic'
 
-    return scipy.interpolate(xs, ys, kind, bounds_error=False)
+    return scipy.interpolate.interp1d(xs, ys, kind, bounds_error=False)
 
 
 def createLookupArray(func, length=256):
