@@ -16,7 +16,7 @@ class Face(object):
 class FaceTracker(object):
     """ A tracker for facial features: face, eyes, nose, mouth. """
 
-    def __init__(self, scaleFactor=1.2, minNeighbors=2, flags=cv2.CV_HAAR_SCALE_IMAGE):
+    def __init__(self, scaleFactor=1.2, minNeighbors=2, flags=cv2.CASCADE_SCALE_IMAGE):
         self.scaleFactor = scaleFactor
         self.minNeighbors = minNeighbors
         self.flags = flags
@@ -42,7 +42,7 @@ class FaceTracker(object):
         if utils.isGray(image):
             image = cv2.equalizeHist(image)
         else:
-            image = cv2.cvtColor(image, cv2.CV_BGR2GRAY)
+            image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
             cv2.equalizeHist(image, image)
 
         minSize = utils.widthHeightDividedBy(image, 8)
@@ -72,11 +72,15 @@ class FaceTracker(object):
                 searchRect = (x+w/6, y+h*2/3, w*2/3, h/3)
                 face.mouthRect = self._detectOneObject(self._mouthClassifier, image, searchRect, 16)
 
-                self._faces.append(faceobject)
+                self._faces.append(face)
 
 
     def _detectOneObject(self, classifier, image, rect, imageSizeToMinSizeRatio):
         x, y, w, h = rect
+        x = int(x)
+        y = int(y)
+        w = int(w)
+        h = int(h)
 
         minSize = utils.widthHeightDividedBy(image, imageSizeToMinSizeRatio)
         subImage = image[y:y+h, x:x+w]
@@ -111,22 +115,3 @@ class FaceTracker(object):
             rects.outlineRect(image, face.rightEyeRect, rightEyeColor)
             rects.outlineRect(image, face.noseRect, noseColor)
             rects.outlineRect(image, face.mouthRect, mouthColor)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
