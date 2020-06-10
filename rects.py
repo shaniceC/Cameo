@@ -36,8 +36,8 @@ def swapRects(src, dst, rects, interpolation=cv2.INTER_LINEAR):
     # copy the contents of each rectangle into the next
     i = numRects - 2
     while i >= 0:
-    copyRect(src, dst, rects[i], rects[i+1], interpolation)
-    i -= 1
+        copyRect(src, dst, rects[i], rects[i+1], interpolation)
+        i -= 1
 
-   # copy the temporarily stored content into the first rectangle
-   copyRect(temp, dst, (0, 0, w, h), rects[0], interpolation)
+    # copy the temporarily stored content into the first rectangle
+    copyRect(temp, dst, (0, 0, w, h), rects[0], interpolation)
