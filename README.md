@@ -24,7 +24,7 @@
 * **BlurFilter**: a filter that blurs the image
 * **EmbossFilter**: a filter that embosses the image
 
-***To change filter:*** Change line 13 in cameo.py to the filter of your choice. If no changes are made, the BGRPortraCurveFilter is being used.
+***To change filter:*** Change line 17 in cameo.py to the filter of your choice for film like filters. Change line 32 for other filters. If no changes are made, the BGRPortraCurveFilter is being used with stroked edges.
 
 
 ### If there are two people present in the image they will switch faces.
