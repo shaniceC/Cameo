@@ -2,13 +2,14 @@
 
 ### Add filters to a video stream from a webcam using Cameo!
 
+***To Start***: Run cameo.py in python 3
+
 ### Controls:
 * **space**: Take a screenshot
 * **tab**: Start/stop recording a screencast
 * **x**: Start/stop drawing debug rectangles around faces
 * **escape**: Quit
 
-***To Start***: Run cameo.py in python 3
 
 ### Filters:
 * **recolorRC**: view image in Red Cyan colorspace
