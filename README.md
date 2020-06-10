@@ -2,6 +2,14 @@
 
 ### Add filters to a video stream from a webcam using Cameo!
 
+### Controls:
+* **space**: Take a screenshot
+* **tab**: Start/stop recording a screencast
+* **x**: Start/stop drawing debug rectangles around faces
+* **escape**: Quit
+
+***To Start***: Run cameo.py in python 3
+
 ### Filters:
 * **recolorRC**: view image in Red Cyan colorspace
 * **recolorRGV**: view image in Red Green Value colorspace
@@ -16,3 +24,8 @@
 * **EmbossFilter**: a filter that embosses the image
 
 ***To change filter:*** Change line 13 in cameo.py to the filter of your choice. If no changes are made, the BGRPortraCurveFilter is being used.
+
+
+### If there are two people present in the image they will switch faces.
+
+![Sample](sample.png)
