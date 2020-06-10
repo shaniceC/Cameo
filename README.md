@@ -15,4 +15,4 @@
 * **BlurFilter**: a filter that blurs the image
 * **EmbossFilter**: a filter that embosses the image
 
-*** To change filter: *** Change line 13 in cameo.py to the filter of your choice. If no changes are made, the BGRPortraCurveFilter is being used.
+***To change filter:*** Change line 13 in cameo.py to the filter of your choice. If no changes are made, the BGRPortraCurveFilter is being used.
